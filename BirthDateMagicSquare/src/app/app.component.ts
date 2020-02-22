@@ -332,7 +332,7 @@ export class AppComponent implements OnInit{
         
       });
       this.myTiles.forEach(element => {        
-        element.toDisplay = ( ((element.repetition == this.minReptition) || (element.zeros == this.minZeros && element.repetition==0 )) 
+        element.toDisplay = ( ((element.repetition == this.minReptition) && (element.zeros == this.minZeros) ) 
           || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==0) ) ) );
       });
     }
