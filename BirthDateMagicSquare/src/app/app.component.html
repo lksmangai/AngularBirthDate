@@ -1,0 +1,62 @@
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Choose your Birth date" name="mydate" [(ngModel)]="mydate" (ngModelChange)="selectChanged($event)" required>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker touchUi  #picker></mat-datepicker>
+  <mat-radio-group [(ngModel)]="optionsselected">
+    <mat-radio-button *ngFor="let options of dayFirstMonthFirst" [value]="options" (change)="radioChange($event)">
+        {{options}}
+    </mat-radio-button>
+</mat-radio-group>
+  <mat-grid-tile
+    [colspan]="4"
+    [rowspan]="1"
+    >
+  </mat-grid-tile>
+  <div  *ngFor="let tiles of myTiles" >
+     <div *ngIf=tiles.toDisplay>
+      <mat-grid-list cols="4" rows="4" rowHeight="30px">
+        <div *ngIf="tiles.special">
+          <mat-grid-tile
+            [colspan]="4"
+            [rowspan]="1"
+            [style.background]="tiles.tiles[0].color">
+            Super Magical Square      
+          </mat-grid-tile>
+        </div>
+        <div *ngIf="tiles.zeros>0">
+          <mat-grid-tile
+            [colspan]="4"
+            [rowspan]="1"
+            [style.background]="tiles.tiles[0].color">
+            One Zero Filled    
+          </mat-grid-tile>
+        </div>
+        <div *ngIf="tiles.repetition>0">
+          <mat-grid-tile
+            [colspan]="4"
+            [rowspan]="1"
+            [style.background]="tiles.tiles[0].color">
+            Repeated Numbers ({{tiles.repetition}})    
+          </mat-grid-tile>
+        </div>
+        <mat-grid-tile
+          *ngFor="let tile of tiles.tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+          {{tile.text}}
+          
+        </mat-grid-tile>
+     
+        <mat-grid-tile
+          [colspan]="4"
+          [rowspan]="1"
+          >
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+  
+</mat-form-field>
+
+
