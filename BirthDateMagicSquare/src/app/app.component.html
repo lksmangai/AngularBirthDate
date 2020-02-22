@@ -7,12 +7,27 @@
         {{options}}
     </mat-radio-button>
 </mat-radio-group>
+<mat-grid-list cols="4" rows="1" rowHeight="30px">
   <mat-grid-tile
-    [colspan]="4"
-    [rowspan]="1"
-    >
+      [colspan]="4"
+      [rowspan]="1"
+      >
   </mat-grid-tile>
+  <!-- <div  *ngFor="let tiles of myTiles" >
+     <mat-grid-tile
+      [colspan]="4"
+      [rowspan]="1"
+      >
+      ZERO : {{tiles.zeros}}
+      REP : {{tiles.repetition}} 
+      DISP : {{tiles.toDisplay}}
+  
+    
+    </mat-grid-tile>
+  </div> -->
+</mat-grid-list>
   <div  *ngFor="let tiles of myTiles" >
+    
      <div *ngIf=tiles.toDisplay>
       <mat-grid-list cols="4" rows="4" rowHeight="30px">
         <div *ngIf="tiles.special">
@@ -28,7 +43,7 @@
             [colspan]="4"
             [rowspan]="1"
             [style.background]="tiles.tiles[0].color">
-            One Zero Filled    
+            Zero ({{tiles.zeros}}) Filled    
           </mat-grid-tile>
         </div>
         <div *ngIf="tiles.repetition>0">

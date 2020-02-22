@@ -314,26 +314,30 @@ export class AppComponent implements OnInit{
       }
       var specailRepition: number = 16;
       var specialZeros: number = 16;
+      this.minReptition = 16;
+      this.minZeros = 16;
       this.myTiles.forEach(element => {
-        if(element.repetition < this.minReptition) {
+        if(element.repetition <= this.minReptition) {
           this.minReptition = element.repetition;
+          if(element.zeros <= this.minZeros) {
+            this.minZeros = element.zeros;
+          }
         }
-        if(element.zeros < this.minZeros) {
-          this.minZeros = element.zeros;
-        }
+        
         if(element.special){
-          if(element.repetition < specailRepition) {
+          if(element.repetition <= specailRepition) {
             specailRepition = element.repetition;
+            if(element.zeros <= specialZeros) {
+              specialZeros = element.zeros;
+            }
           }
-          if(element.zeros < specialZeros) {
-            specialZeros = element.zeros;
-          }
+          
         }
         
       });
       this.myTiles.forEach(element => {        
-        element.toDisplay = ( ((element.repetition == this.minReptition) && (element.zeros == this.minZeros) ) 
-          || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==0) ) ) );
+        element.toDisplay = ( ( (element.repetition == this.minReptition) && (element.zeros == this.minZeros) ) 
+          || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==specailRepition) ) ) );
       });
     }
     
