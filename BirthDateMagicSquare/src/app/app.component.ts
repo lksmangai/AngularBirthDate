@@ -232,9 +232,7 @@ export class AppComponent implements OnInit{
             if(!this.compare(this.n1) || !this.comparen1() ) {
               repetition++;
             }
-            if(this.n1==0) {
-              zeros++;
-            }
+            
             if(!this.compare(this.n2) || !this.comparen2() ) {
               repetition++;
             }
