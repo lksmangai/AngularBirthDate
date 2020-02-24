@@ -7,11 +7,91 @@
         {{options}}
     </mat-radio-button>
 </mat-radio-group>
-<mat-grid-list cols="4" rows="1" rowHeight="30px">
+<mat-grid-list cols="4" rows="1" rowHeight="10px">
   <mat-grid-tile
+      [colspan]="4"
+      [rowspan]="1"       
+      >
+     
+      <!-- MINMIN: {{minZeros}}
+      REPMIN : {{minReptition}} -->
+  </mat-grid-tile>
+  <!-- <div  *ngFor="let tiles of myTiles" >
+     <mat-grid-tile
       [colspan]="4"
       [rowspan]="1"
       >
+      ZERO : {{tiles.zeros}}
+      REP : {{tiles.repetition}} 
+      DISP : {{tiles.toDisplay}}
+  
+    
+    </mat-grid-tile>
+  </div> -->
+</mat-grid-list>
+<div *ngIf="minReptition>0 || minZeros>0">
+  <mat-grid-list cols="4" rows="1" rowHeight="90px">
+    <mat-grid-tile
+        [colspan]="4"
+        [rowspan]="1"
+        [style.background]="'#03DAC5'"
+        >
+        <div *ngIf="minReptition>0">
+          No Magical Squares, However Got with Repetitions ({{minReptition}}).
+        </div>
+        <div *ngIf="minReptition==0 && minZeros>0">
+          No Magical Squares, However Got with One Zero.
+        </div>
+        <!-- MINMIN: {{minZeros}}
+        REPMIN : {{minReptition}} -->
+    </mat-grid-tile>
+    <!-- <div  *ngFor="let tiles of myTiles" >
+       <mat-grid-tile
+        [colspan]="4"
+        [rowspan]="1"
+        >
+        ZERO : {{tiles.zeros}}
+        REP : {{tiles.repetition}} 
+        DISP : {{tiles.toDisplay}}
+    
+      
+      </mat-grid-tile>
+    </div> -->
+  </mat-grid-list>  
+</div>
+<div *ngIf="minReptition==0 && minZeros==0">
+  <mat-grid-list cols="4" rows="1" rowHeight="90px">
+    <mat-grid-tile
+        [colspan]="4"
+        [rowspan]="1"
+        [style.background]="'#03DAC5'"
+        >
+        You got {{totalSquares}} Magical Squares & {{superMagicals}} Super Magical Squares
+        <!-- MINMIN: {{minZeros}}
+        REPMIN : {{minReptition}} -->
+    </mat-grid-tile>
+    <!-- <div  *ngFor="let tiles of myTiles" >
+       <mat-grid-tile
+        [colspan]="4"
+        [rowspan]="1"
+        >
+        ZERO : {{tiles.zeros}}
+        REP : {{tiles.repetition}} 
+        DISP : {{tiles.toDisplay}}
+    
+      
+      </mat-grid-tile>
+    </div> -->
+  </mat-grid-list>
+</div>
+<mat-grid-list cols="4" rows="1" rowHeight="10px">
+  <mat-grid-tile
+      [colspan]="4"
+      [rowspan]="1"       
+      >
+     
+      <!-- MINMIN: {{minZeros}}
+      REPMIN : {{minReptition}} -->
   </mat-grid-tile>
   <!-- <div  *ngFor="let tiles of myTiles" >
      <mat-grid-tile

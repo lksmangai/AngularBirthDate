@@ -25,7 +25,7 @@ export interface Tile {
   color: string;
   cols: number;
   rows: number;
-  text: number;
+  text: any;
   
 }
 export interface TileCollection {
@@ -81,6 +81,8 @@ export class AppComponent implements OnInit{
     minReptition:number = 16;
     minZeros:number = 16;
     dayFirstorMonthFirst:string = 'Day First';
+    totalSquares:number = 0;
+    superMagicals:number = 0;
     ngOnInit(){
       
       this.selectChanged(new Date())
@@ -314,28 +316,49 @@ export class AppComponent implements OnInit{
       var specialZeros: number = 16;
       this.minReptition = 16;
       this.minZeros = 16;
+
+      
+      
       this.myTiles.forEach(element => {
         if(element.repetition <= this.minReptition) {
           this.minReptition = element.repetition;
-          if(element.zeros <= this.minZeros) {
-            this.minZeros = element.zeros;
-          }
         }
-        
         if(element.special){
           if(element.repetition <= specailRepition) {
-            specailRepition = element.repetition;
-            if(element.zeros <= specialZeros) {
-              specialZeros = element.zeros;
-            }
+            specailRepition = element.repetition;            
           }
           
         }
         
       });
+      this.myTiles.forEach(element => {
+        if(element.repetition == this.minReptition) {
+          if(element.zeros < this.minZeros) {
+            this.minZeros = element.zeros;
+          }
+        }
+        if(element.special){
+          if(element.repetition == specailRepition) {
+            if(element.zeros < specialZeros) {
+              specialZeros = element.zeros;
+            }            
+          }
+          
+        }
+        
+      });
+      this.totalSquares = 0;
+      this.superMagicals = 0;
       this.myTiles.forEach(element => {        
         element.toDisplay = ( ( (element.repetition == this.minReptition) && (element.zeros == this.minZeros) ) 
           || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==specailRepition) ) ) );
+        if(element.toDisplay) {
+          this.totalSquares++;
+          if(element.special) {
+            this.superMagicals++;
+          }
+        }
+        
       });
     }
     
