@@ -351,7 +351,7 @@ export class AppComponent implements OnInit{
       this.superMagicals = 0;
       this.myTiles.forEach(element => {        
         element.toDisplay = ( ( (element.repetition == this.minReptition) && (element.zeros == this.minZeros) ) 
-          || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==specailRepition) ) ) );
+          || ( (element.special) && ( (element.zeros==specialZeros && element.repetition==0) ) ) );
         if(element.toDisplay) {
           this.totalSquares++;
           if(element.special) {
