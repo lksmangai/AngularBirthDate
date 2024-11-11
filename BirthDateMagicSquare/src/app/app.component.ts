@@ -347,6 +347,7 @@ export class AppComponent implements OnInit{
         }
         
       });
+      this.myTiles.sort((a, b) => (b.special ? 1 : 0) - (a.special ? 1 : 0));
       this.totalSquares = 0;
       this.superMagicals = 0;
       this.myTiles.forEach(element => {        
